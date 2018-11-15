@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import "./Contact.css";
 
 class Contact extends Component {
+  // propTypes can be placed here within the Class or down below outside
+  // of the Class where they are currently commented out
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired
+  };
+
   render() {
     // Destructuring example b/c of redundant props.name, props.email, props.phone that existed in each Contact
     // they are not commented out due to the destructuring seen right below this line.
@@ -30,10 +39,12 @@ class Contact extends Component {
   }
 }
 
-Contact.propTypes = {
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired
-};
+// propTypes defined OUTSIDE of the Class shown here
+
+// Contact.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   email: PropTypes.string.isRequired,
+//   phone: PropTypes.string.isRequired
+// };
 
 export default Contact;
