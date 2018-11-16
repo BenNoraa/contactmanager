@@ -4,13 +4,25 @@ import PropTypes from "prop-types";
 const Header = props => {
   const { branding } = props;
   return (
-    <div>
-      {/* below this line shows style done inline  */}
-      {/* <h1 style={{ color: "red", fontSize: "50px" }}>{branding}</h1> */}
-
-      {/* below this line shows how to style using a variable that is declared below outside the return */}
-      <h1 style={headingStyle}>{branding}</h1>
-    </div>
+    <nav
+      className="navbar navbar-expand-sm
+    navbar-dark bg-danger mb-3 py-0"
+    >
+      <div className="container">
+        <a href="/" className="navbar-brand">
+          {branding}
+        </a>
+        <div>
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <a href="/" className="nav-link">
+                Home
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };
 
@@ -22,14 +34,5 @@ Header.defaultProps = {
 Header.propTypes = {
   branding: PropTypes.string.isRequired
 };
-
-// styles put within a var
-const headingStyle = {
-  color: "green",
-  fontSize: "50px"
-};
-
-// you can also create a specific stylesheet for each Component as well, i.e., Header.css
-// see Contact.css for real file example
 
 export default Header;
