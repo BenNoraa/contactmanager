@@ -11,6 +11,14 @@ const reducer = (state, action) => {
           contact => contact.id !== action.payload
         )
       };
+    case "ADD_CONTACT":
+      return {
+        ...state,
+        // contacts is the array of objects of contacts
+        // take payload which is the entire contact info, i.e., name, email
+        // add onto our current contacts in our state with the SPREAD operator ...state.contacts
+        contacts: [action.payload, ...state.contacts]
+      };
     default:
       return state;
   }
