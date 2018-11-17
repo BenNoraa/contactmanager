@@ -56,6 +56,11 @@ class AddContact extends Component {
       phone: "",
       errors: {}
     });
+
+    // Redirect using push method
+    // this doesn't redirect to a different page (page doesn't refresh at all) it's just in the React application
+    // so adding a contact will still remain in the state
+    this.props.history.push("/");
   };
 
   // whenever you have an event you can pass an e
