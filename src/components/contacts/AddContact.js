@@ -9,10 +9,11 @@ class AddContact extends Component {
   state = {
     name: "",
     email: "",
-    phone: ""
+    phone: "",
+    errors: {}
   };
 
-  // submitting a new contact method
+  // onSubmit method where you can see ADD_CONTACT happens with dispatch
   // e is last here
   onSubmit = (dispatch, e) => {
     // prevents any default submitting of a form
@@ -20,6 +21,22 @@ class AddContact extends Component {
 
     // get values from the state so use destructuring
     const { name, email, phone } = this.state;
+
+    // Check for errors
+    if (name === "") {
+      this.setState({ errors: { name: "Name is required" } });
+      return;
+    }
+
+    if (email === "") {
+      this.setState({ errors: { email: "Email is required" } });
+      return;
+    }
+
+    if (phone === "") {
+      this.setState({ errors: { phone: "Phone is required" } });
+      return;
+    }
 
     // construct a new Contact object
     const newContact = {
@@ -36,7 +53,8 @@ class AddContact extends Component {
     this.setState({
       name: "",
       email: "",
-      phone: ""
+      phone: "",
+      errors: {}
     });
   };
 
@@ -48,7 +66,7 @@ class AddContact extends Component {
   render() {
     // want value of form to be whatever is in the state for that particular field
     // destructuring done here to pull out name, email, and phone from state
-    const { name, email, phone } = this.state;
+    const { name, email, phone, errors } = this.state;
 
     return (
       <Consumer>
@@ -67,6 +85,7 @@ class AddContact extends Component {
                     placeholder="Enter Name"
                     value={name} // name comes from the state which we defined in the const = { name, .. } above the return
                     onChange={this.onChange}
+                    error={errors.name}
                   />
                   <TextInputGroup
                     label="Email"
@@ -75,6 +94,7 @@ class AddContact extends Component {
                     placeholder="Enter Email"
                     value={email} // email comes from the state which we defined in the const = { name, .. } above the return
                     onChange={this.onChange}
+                    error={errors.email}
                   />
                   <TextInputGroup
                     label="Phone"
@@ -82,6 +102,7 @@ class AddContact extends Component {
                     placeholder="Enter Phone"
                     value={phone} // phone comes from the state which we defined in the const = { name, .. } above the return
                     onChange={this.onChange}
+                    error={errors.phone}
                   />
                   <input
                     type="submit"
