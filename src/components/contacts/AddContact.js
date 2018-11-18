@@ -16,7 +16,7 @@ class AddContact extends Component {
 
   // onSubmit method where you can see ADD_CONTACT happens with dispatch
   // e is last here
-  onSubmit = (dispatch, e) => {
+  onSubmit = async (dispatch, e) => {
     // prevents any default submitting of a form
     e.preventDefault();
 
@@ -49,9 +49,16 @@ class AddContact extends Component {
     };
 
     // post request to add new user using inputs (url, and our newContact object)
-    axios.post("https://jsonplaceholder.typicode.com/users", newContact).then((
-      res // call dispatch by type ADD_CONTACT to perform action and res.data provides the user info and user id
-    ) => dispatch({ type: "ADD_CONTACT", payload: res.data }));
+    const res = await axios.post(
+      "https://jsonplaceholder.typicode.com/users",
+      newContact
+    );
+
+    dispatch({ type: "ADD_CONTACT", payload: res.data });
+
+    // .then((
+    //   res // call dispatch by type ADD_CONTACT to perform action and res.data provides the user info and user id
+    // ) => dispatch({ type: "ADD_CONTACT", payload: res.data }));
 
     // clear input fields
     this.setState({
