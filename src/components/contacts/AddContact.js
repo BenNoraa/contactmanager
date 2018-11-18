@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Consumer } from "../../context";
 import TextInputGroup from "../layout/TextInputGroup";
 // allows us to auto create unique user id for things like adding users
-import uuid from "uuid";
+// import uuid from "uuid";
+import axios from "axios";
 
 class AddContact extends Component {
   // when you create a form usually each field or input is a piece of the state
@@ -40,14 +41,17 @@ class AddContact extends Component {
 
     // construct a new Contact object
     const newContact = {
-      id: uuid(),
+      // auto generate a user id
+      // id: uuid(),
       name,
       email,
       phone
     };
 
-    // call dispatch by type ADD_CONTACT to perform action
-    dispatch({ type: "ADD_CONTACT", payload: newContact });
+    // post request to add new user using inputs (url, and our newContact object)
+    axios.post("https://jsonplaceholder.typicode.com/users", newContact).then((
+      res // call dispatch by type ADD_CONTACT to perform action and res.data provides the user info and user id
+    ) => dispatch({ type: "ADD_CONTACT", payload: res.data }));
 
     // clear input fields
     this.setState({
