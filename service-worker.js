@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/BenNoraa/contactmanager/precache-manifest.2f30e053028665230606cc7e395cc601.js"
+  "/contactmanager/precache-manifest.a4444e7e47c5043e34992dfa47ffd19f.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/BenNoraa/contactmanager/index.html", {
+workbox.routing.registerNavigationRoute("/contactmanager/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
